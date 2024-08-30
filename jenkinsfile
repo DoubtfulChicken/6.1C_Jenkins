@@ -12,15 +12,17 @@ pipeline {
                 echo 'Running unit and integration tests using JUnit and TestNG...'
             }
             post {
-                success {
-                    mail to: 'oliver.b.marriott@gmail.com',
-                         subject: "Build Success",
-                         body: "The Build stage has completed successfully."
-                }
-                failure {
-                    mail to: 'oliver.b.marriott@gmail.com',
-                         subject: "Build Failure",
-                         body: "The Build stage has failed. Please check the logs."
+                always {
+                    emailext(
+                        to: 'oliver.b.marriott@gmail.com',
+                        subject: "Pipeline - Security Scan Stage: ${currentBuild.currentResult}",
+                        body: """The Security Scan stage has completed with status: ${currentBuild.currentResult}.
+                        Please check the attached logs for more details.""",
+                        from: 'oliver.b.marriott@gmail.com',
+                        replyTo: 'oliver.b.marriott@gmail.com',
+                        attachLog: true,
+                        mimeType: 'text/plain',
+                    )
                 }
             }
         }
