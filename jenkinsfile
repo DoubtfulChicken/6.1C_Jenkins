@@ -19,7 +19,6 @@ pipeline {
                         body: """The Unit and Integration Tests stage has completed with status: ${currentBuild.currentResult}.
                         Please check the attached logs for more details.""",
                         attachLog: true,
-                        mimeType: 'text/plain'
                     )
                 }
             }
@@ -43,7 +42,6 @@ pipeline {
                         body: """The Security Scan stage has completed with status: ${currentBuild.currentResult}.
                         Please check the attached logs for more details.""",
                         attachLog: true,
-                        mimeType: 'text/plain'
                     )
                 }
             }
