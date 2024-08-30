@@ -16,8 +16,10 @@ pipeline {
                     emailext(
                         to: 'oliver.b.marriott@gmail.com',
                         subject: "Pipeline - Unit and Integration Tests Stage: ${currentBuild.currentResult}",
-                        body: "The Unit and Integration Tests stage has completed with status: ${currentBuild.currentResult}",
-                        attachLog: true
+                        body: """The Unit and Integration Tests stage has completed with status: ${currentBuild.currentResult}.
+                        Please check the attached logs for more details.""",
+                        attachLog: true,
+                        mimeType: 'text/plain'
                     )
                 }
             }
@@ -38,8 +40,10 @@ pipeline {
                     emailext(
                         to: 'oliver.b.marriott@gmail.com',
                         subject: "Pipeline - Security Scan Stage: ${currentBuild.currentResult}",
-                        body: "The Security Scan stage has completed with status: ${currentBuild.currentResult}",
-                        attachLog: true
+                        body: """The Security Scan stage has completed with status: ${currentBuild.currentResult}.
+                        Please check the attached logs for more details.""",
+                        attachLog: true,
+                        mimeType: 'text/plain'
                     )
                 }
             }
