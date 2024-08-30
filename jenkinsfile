@@ -42,7 +42,11 @@ pipeline {
                         subject: "Pipeline - Security Scan Stage: ${currentBuild.currentResult}",
                         body: """The Security Scan stage has completed with status: ${currentBuild.currentResult}.
                         Please check the attached logs for more details.""",
+                        from: 'oliver.b.marriott@gmail.com',
+                        replyTo: 'oliver.b.marriott@gmail.com',
                         attachLog: true,
+                        mimeType: 'text/plain',
+                        credentialsId: 'gmail-creds'
                     )
                 }
             }
