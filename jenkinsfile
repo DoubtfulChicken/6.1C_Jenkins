@@ -46,7 +46,6 @@ pipeline {
                         replyTo: 'oliver.b.marriott@gmail.com',
                         attachLog: true,
                         mimeType: 'text/plain',
-                        credentialsId: 'gmail-creds'
                     )
                 }
             }
