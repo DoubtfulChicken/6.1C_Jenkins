@@ -12,14 +12,15 @@ pipeline {
                 echo 'Running unit and integration tests using JUnit and TestNG...'
             }
             post {
-                always {
-                    emailext(
-                        to: 'oliver.b.marriott@gmail.com',
-                        subject: "Pipeline - Unit and Integration Tests Stage: ${currentBuild.currentResult}",
-                        body: """The Unit and Integration Tests stage has completed with status: ${currentBuild.currentResult}.
-                        Please check the attached logs for more details.""",
-                        attachLog: true,
-                    )
+                success {
+                    mail to: 'oliver.b.marriott@gmail.com',
+                         subject: "Build Success",
+                         body: "The Build stage has completed successfully."
+                }
+                failure {
+                    mail to: 'oliver.b.marriott@gmail.com',
+                         subject: "Build Failure",
+                         body: "The Build stage has failed. Please check the logs."
                 }
             }
         }
